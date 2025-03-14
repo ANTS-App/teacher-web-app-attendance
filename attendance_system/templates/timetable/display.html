@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <h3>Teacher's Timetable</h3>
+    </div>
+    <div class="card-body">
+        {% if timetable_data %}
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        {% for slot in time_slots %}
+                        <th>{{ slot }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for day_data in timetable_data %}
+                    <tr>
+                        <th>{{ day_data.day }}</th>
+                        {% for class in day_data.classes %}
+                        <td class="timetable-cell {% if class %}class-cell{% else %}empty-cell{% endif %}">
+                            {% if class %}
+                            <a href="{% url 'select_class' day=day_data.day time_slot_index=forloop.counter0 %}" 
+                               class="d-block h-100 text-decoration-none text-dark py-4">
+                                {{ class }}
+                            </a>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No timetable data available. Please <a href="{% url 'upload_timetable' %}">upload a timetable</a>.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

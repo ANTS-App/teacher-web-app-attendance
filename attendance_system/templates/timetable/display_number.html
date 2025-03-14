@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Attendance Session Active</h3>
+            </div>
+            <div class="card-body text-center">
+                <h4 class="mb-3">Ask students to select this number in their app:</h4>
+                
+                <div class="number-display">{{ display_number }}</div>
+                
+                <div class="countdown" id="countdown">Time remaining: <span id="timer">{{ duration }}:00</span></div>
+                
+                <p class="text-muted">This window will automatically close when the session ends.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Set up the countdown timer
+    const duration = {{ duration }};
+    let timeLeft = duration * 60;
+    
+    function updateTimer() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        document.getElementById('timer').textContent = 
+            `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            window.location.href = "{% url 'end_attendance' timestamp=timestamp %}";
+        }
+        
+        timeLeft--;
+    }
+    
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+</script>
+{% endblock %}

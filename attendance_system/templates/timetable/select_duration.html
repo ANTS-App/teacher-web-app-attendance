@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Take Attendance</h3>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-4">{{ day }} - {{ time_slot }} - {{ class_name }}</h4>
+                
+                <p>How long should the attendance session be?</p>
+                
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="{% url 'start_attendance' day=day time_slot=time_slot class_name=class_name duration=1 %}" 
+                       class="btn btn-primary btn-lg">1 Minute</a>
+                    <a href="{% url 'start_attendance' day=day time_slot=time_slot class_name=class_name duration=3 %}" 
+                       class="btn btn-secondary btn-lg">3 Minutes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

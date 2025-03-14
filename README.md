@@ -44,3 +44,13 @@ This web app pushes verification numbers to Firebase, which the companion studen
 ## 🏗️ Setup & Installation
 
 See the installation guide for detailed setup instructions.
+
+
+
+
+
+## Superuser
+
+Username: `annimukh`
+Email: `mukh.aniruddha@gmail.com`
+Password: `1234`

@@ -1,0 +1,4 @@
+attendance_system/credentials
+__pycache__/
+*.py[cod]
+*$py.class

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Attendance Archives</h3>
+    </div>
+    <div class="card-body">
+        {% if attendance_data %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Time Slot</th>
+                        <th>Class</th>
+                        <th>Present</th>
+                        <th>Total</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance_data %}
+                    <tr>
+                        <td>{{ record.date }}</td>
+                        <td>{{ record.day }}</td>
+                        <td>{{ record.time_slot }}</td>
+                        <td>{{ record.class_name }}</td>
+                        <td>{{ record.present_count }}</td>
+                        <td>{{ record.total_count }}</td>
+                        <td>{{ record.attendance_percentage }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            No attendance records found. Records will appear here after students have marked their attendance.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

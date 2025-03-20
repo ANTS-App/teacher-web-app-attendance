@@ -136,7 +136,7 @@ def start_attendance(request, day, time_slot, class_name, duration):
             other_numbers.append(num)
 
     # Create a timestamp for the session
-    timestamp = timezone.now().strftime("%Y%m%d%H%M%S")
+    timestamp = timezone.now().strftime("%Y%m%d%H%M")
 
     # Create a reference in Firebase
     session_ref = db.reference(f"attendance_sessions/{timestamp}")

@@ -235,6 +235,7 @@ def attendance_archives(request):
                         "class_name": session_info.get("class_name", "Unknown"),
                         "date": session_info.get("timestamp", "").split("T")[0],
                         "present_count": present_count,
+                        # "section": session_info.get("section", "Unknown"),
                         "total_count": total_count,
                         "attendance_percentage": (
                             round(present_count / total_count * 100, 2)
